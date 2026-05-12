@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Tarea 4</title>
+</head>
+
+<body>
+
+<h1>TAREA 4</h1>
+
+<label>Ingrese el primer número:</label>
+<input type="number" id="num1">
+
+<br><br>
+
+<label>Ingrese el segundo número:</label>
+<input type="number" id="num2">
+
+<br><br>
+
+<button onclick="calcular()">Calcular</button>
+
+<h2>Resultados:</h2>
+
+<div id="resultado"></div>
+
+<script>
+
+function calcular(){
+
+    let num1 = parseFloat(document.getElementById("num1").value);
+    let num2 = parseFloat(document.getElementById("num2").value);
+
+    let salida = "";
+
+    for(let i = 1; i <= 5; i++){
+
+        switch(i){
+
+            case 1:
+                salida += "<p>1. SUMA: " + (num1 + num2) + "</p>";
+                break;
+
+            case 2:
+                salida += "<p>2. RESTA: " + (num1 - num2) + "</p>";
+                break;
+
+            case 3:
+                salida += "<p>3. MULTIPLICACIÓN: " + (num1 * num2) + "</p>";
+                break;
+
+            case 4:
+                salida += "<p>4. DIVISIÓN: " + (num1 / num2) + "</p>";
+                break;
+
+            case 5:
+                salida += "<p>5. MOD (%): " + (num1 % num2) + "</p>";
+                break;
+        }
+    }
+
+    document.getElementById("resultado").innerHTML = salida;
+}
+
+</script>
+
+</body>
+</html>
