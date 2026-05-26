@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Gestión de Activos</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="container">
+
+
+    <aside class="sidebar">
+
+        <h2>Gestión</h2>
+
+        <ul>
+            <li><a href="#menu">Menú Principal</a></li>
+            <li><a href="#usuarios">Usuarios</a></li>
+            <li><a href="#activos">Activos</a></li>
+            <li><a href="#mantenimiento">Mantenimiento</a></li>
+            <li><a href="#asignacion">Asignación</a></li>
+            <li><a href="#baja">Baja</a></li>
+        </ul>
+
+    </aside>
+
+
+    <main class="content">
+
+
+        <section id="menu" class="card">
+
+            <h1>Menú Principal</h1>
+
+            <div class="dashboard-grid">
+
+                <div class="dashboard-card">
+                    <h3>Usuarios</h3>
+                    <p>Gestión de usuarios.</p>
+                    <a href="#usuarios">
+                        <button>Ir</button>
+                    </a>
+                </div>
+
+                <div class="dashboard-card">
+                    <h3>Activos</h3>
+                    <p>Registro de activos.</p>
+                    <a href="#activos">
+                        <button>Ir</button>
+                    </a>
+                </div>
+
+                <div class="dashboard-card">
+                    <h3>Mantenimiento</h3>
+                    <p>Control de mantenimiento.</p>
+                    <a href="#mantenimiento">
+                        <button>Ir</button>
+                    </a>
+                </div>
+
+                <div class="dashboard-card">
+                    <h3>Asignación</h3>
+                    <p>Asignar activos.</p>
+                    <a href="#asignacion">
+                        <button>Ir</button>
+                    </a>
+                </div>
+
+                <div class="dashboard-card">
+                    <h3>Baja</h3>
+                    <p>Dar de baja activos.</p>
+                    <a href="#baja">
+                        <button>Ir</button>
+                    </a>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <section id="usuarios" class="card">
+
+            <h1>Registro de Usuarios</h1>
+
+            <form id="usuarioForm">
+
+                <div class="grid-2">
+
+                    <div class="input-group">
+                        <label>Nombre</label>
+                        <input type="text" id="nombreUsuario">
+                        <small class="error"></small>
+                    </div>
+
+                    <div class="input-group">
+                        <label>Usuario</label>
+                        <input type="text" id="usuarioRegistro">
+                        <small class="error"></small>
+                    </div>
+
+                </div>
+
+                <div class="grid-2">
+
+                    <div class="input-group">
+                        <label>Email</label>
+                        <input type="email" id="email">
+                        <small class="error"></small>
+                    </div>
+
+                    <div class="input-group">
+                        <label>Contraseña</label>
+                        <input type="password" id="passwordRegistro">
+                        <small class="error"></small>
+                    </div>
+
+                </div>
+
+                <button type="submit">Guardar Usuario</button>
+
+            </form>
+
+        </section>
+
+
+        <section id="activos" class="card">
+
+            <h1>Registro de Activos</h1>
+
+            <form id="activoForm">
+
+                <div class="grid-2">
+
+                    <div class="input-group">
+                        <label>Código</label>
+                        <input type="text" id="codigo">
+                        <small class="error"></small>
+                    </div>
+
+                    <div class="input-group">
+                        <label>Nombre del Activo</label>
+                        <input type="text" id="nombreActivo">
+                        <small class="error"></small>
+                    </div>
+
+                </div>
+
+                <div class="grid-2">
+
+                    <div class="input-group">
+
+                        <label>Tipo</label>
+
+                        <select id="tipo">
+                            <option value="">Seleccione</option>
+                            <option>Hardware</option>
+                            <option>Periférico</option>
+                            <option>Mobiliario</option>
+                        </select>
+
+                        <small class="error"></small>
+
+                    </div>
+
+                    <div class="input-group">
+
+                        <label>Estado</label>
+
+                        <select id="estado">
+                            <option value="">Seleccione</option>
+                            <option>Activo</option>
+                            <option>Nuevo</option>
+                            <option>En mantenimiento</option>
+                        </select>
+
+                        <small class="error"></small>
+
+                    </div>
+
+                </div>
+
+                <div class="input-group">
+                    <label>Fecha de Compra</label>
+                    <input type="date" id="fechaCompra">
+                    <small class="error"></small>
+                </div>
+
+                <div class="input-group">
+                    <label>Descripción</label>
+                    <textarea id="descripcion"></textarea>
+                    <small class="error"></small>
+                </div>
+
+                <button type="submit">Guardar Activo</button>
+
+            </form>
+
+        </section>
+
+
+<section id="mantenimiento" class="card">
+
+    <h1>Mantenimiento de Activos</h1>
+
+    <form id="mantenimientoForm">
+
+        <div class="input-group">
+
+            <label>Activo</label>
+
+            <select id="activoMantenimiento">
+                <option value="">Seleccione</option>
+            </select>
+
+            <small class="error"></small>
+
+        </div>
+
+        <div class="input-group">
+
+            <label>Tipo de mantenimiento</label>
+
+            <select id="tipoMantenimiento">
+                <option value="">Seleccione</option>
+                <option>Preventivo</option>
+                <option>Correctivo</option>
+            </select>
+
+            <small class="error"></small>
+
+        </div>
+
+        <div class="input-group">
+
+            <label>Fecha</label>
+
+            <input type="date" id="fechaMantenimiento">
+
+            <small class="error"></small>
+
+        </div>
+
+        <div class="input-group">
+
+            <label>Descripción</label>
+
+            <textarea id="descripcionMantenimiento"></textarea>
+
+            <small class="error"></small>
+
+        </div>
+
+        <div class="input-group">
+
+            <label>Estado Final</label>
+
+            <select id="estadoFinal">
+                <option value="">Seleccione</option>
+                <option>Activo</option>
+                <option>En reparación</option>
+            </select>
+
+            <small class="error"></small>
+
+        </div>
+
+        <button type="submit">Guardar</button>
+
+    </form>
+
+</section>
+
+
+
+<section id="asignacion" class="card">
+
+    <h1>Asignación de Activos</h1>
+
+    <form id="asignacionForm">
+
+        <div class="input-group">
+
+            <label>Activo</label>
+
+            <select id="activoAsignacion">
+                <option value="">Seleccione</option>
+            </select>
+
+            <small class="error"></small>
+
+        </div>
+
+        <div class="input-group">
+
+            <label>Usuario</label>
+
+            <select id="usuarioAsignacion">
+                <option value="">Seleccione</option>
+                <option>Administrador</option>
+                <option>Empleado</option>
+            </select>
+
+            <small class="error"></small>
+
+        </div>
+
+        <div class="input-group">
+
+            <label>Fecha de Asignación</label>
+
+            <input type="date" id="fechaAsignacion">
+
+            <small class="error"></small>
+
+        </div>
+
+        <button type="submit">Asignar</button>
+
+    </form>
+
+</section>
+
+<section id="baja" class="card">
+
+    <h1>Baja de Activos</h1>
+
+    <form id="bajaForm">
+
+        <div class="input-group">
+
+            <label>Seleccionar Activo</label>
+
+            <select id="activoBaja">
+
+                <option value="">Seleccione</option>
+
+            </select>
+
+            <small class="error"></small>
+
+        </div>
+
+        <div class="grid-2">
+
+            <div class="input-group">
+
+                <label>Código del Activo</label>
+
+                <input type="text" id="codigoBaja">
+
+                <small class="error"></small>
+
+            </div>
+
+            <div class="input-group">
+
+                <label>Tipo de Activo</label>
+
+                <select id="tipoBaja">
+
+                    <option value="">Seleccione</option>
+                    <option>Hardware</option>
+                    <option>Periférico</option>
+                    <option>Mobiliario</option>
+
+                </select>
+
+                <small class="error"></small>
+
+            </div>
+
+        </div>
+
+        <div class="input-group">
+
+            <label>Descripción de la Baja</label>
+
+            <textarea id="descripcionBaja"></textarea>
+
+            <small class="error"></small>
+
+        </div>
+
+        <button type="submit">
+            Dar de Baja
+        </button>
+
+    </form>
+
+</section>
+
+    </main>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
