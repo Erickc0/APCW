@@ -6,7 +6,7 @@ const listaTareas = document.getElementById('lista-tareas');
 const btnExportarJson = document.getElementById('btn-exportar-json');
 const btnExportarXml = document.getElementById('btn-exportar-xml');
 // 2. Estado de la Aplicación (Cargar datos previos de LocalStorage o iniciar vacío)
-let coleccionTareas = JSON.parse(localStorage.getItem('tareas Guardadas')) || [];
+let coleccionTareas = JSON.parse(localStorage.getItem('tareasGuardadas')) || [];
 // 3. Función para pintar las tareas en el HTML
 function redibujarInterfaz() {
  listaTareas.innerHTML = ''; // Vaciar contenedor antes de actualizar
