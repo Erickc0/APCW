@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Estudiantes</title>
+    <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+
+<button type="submit">Guardar Estudiante</button>
+
+<button type="button" id="btnExportar">
+    Exportar JSON
+</button>   
+
+<div class="container">
+
+    <h1>Registro de Estudiantes</h1>
+
+    <form id="formEstudiante">
+
+        <div class="grupo">
+            <label>Cédula</label>
+            <input type="text" id="cedula">
+            <small></small>
+        </div>
+
+        <div class="grupo">
+            <label>Apellidos</label>
+            <input type="text" id="apellidos">
+            <small></small>
+        </div>
+
+        <div class="grupo">
+            <label>Nombres</label>
+            <input type="text" id="nombres">
+            <small></small>
+        </div>
+
+        <div class="grupo">
+            <label>Dirección</label>
+            <input type="text" id="direccion">
+            <small></small>
+        </div>
+
+        <div class="grupo">
+            <label>Teléfono</label>
+            <input type="text" id="telefono">
+            <small></small>
+        </div>
+
+        <div class="grupo">
+            <label>Correo Electrónico</label>
+            <input type="email" id="correo">
+            <small></small>
+        </div>
+
+        <div class="grupo">
+            <label>Facultad</label>
+            <select id="facultad">
+                <option value="">Seleccione</option>
+                <option>Ciencias de la vida y tecnología</option>
+                <option>Administración</option>
+                <option>Ciencias de la Salud</option>
+                <option>Derecho</option>
+                <option>Educación</option>
+            </select>
+            <small></small>
+        </div>
+
+        <div class="grupo">
+            <label>Nivel</label>
+            <select id="nivel">
+                <option value="">Seleccione</option>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                <option>6</option>
+                <option>7</option>
+                <option>8</option>
+                <option>9</option>
+                <option>10</option>
+            </select>
+            <small></small>
+        </div>
+
+        <div class="grupo">
+            <label>Paralelo</label>
+            <input type="text" id="paralelo">
+            <small></small>
+        </div>
+
+        <button type="submit">Guardar Estudiante</button>
+
+    </form>
+
+   <h2>Listado de Estudiantes</h2>
+
+<table>
+    <thead>
+        <tr>
+            <th>Cédula</th>
+            <th>Apellidos</th>
+            <th>Nombres</th>
+            <th>Dirección</th>
+            <th>Teléfono</th>
+            <th>Correo Electrónico</th>
+            <th>Facultad</th>
+            <th>Nivel</th>
+            <th>Paralelo</th>
+        </tr>
+    </thead>
+    <tbody id="tablaEstudiantes"></tbody>
+</table>
+
+</div>
+
+<script src="app.js"></script>
+
+</body>
+</html>

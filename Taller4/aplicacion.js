@@ -54,9 +54,7 @@ window.removerTarea = function(indice) {
  actualizarAlmacenamientoLocal();
  redibujarInterfaz();
 };
-// =======================================================
 // PROCESAMIENTO DE FORMATOS SEMIESTRUCTURADOS (XML y JSON)
-// =======================================================
 // Exportación nativa a formato JSON
 btnExportarJson.addEventListener('click', () => {
  if (coleccionTareas.length === 0) return alert('No existen tareas para exportar.');
