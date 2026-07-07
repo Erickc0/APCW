@@ -1,0 +1,9 @@
+.sidebar a.active {
+  color: white;
+  font-weight: 700;
+}
+
+.standalone-card {
+  max-width: 720px;
+  margin: 40px auto;
+}

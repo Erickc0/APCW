@@ -25,6 +25,7 @@
             <li><a href="#mantenimiento">Mantenimiento</a></li>
             <li><a href="#asignacion">Asignación</a></li>
             <li><a href="#baja">Baja</a></li>
+            <li><a href="#reportes">Reportes</a></li>
         </ul>
 
     </aside>
@@ -32,10 +33,90 @@
 
     <main class="content">
 
+        <header class="topbar">
+            <div>
+                <h2>Sistema de Gestión de Activos</h2>
+                <p>Panel de control operativo</p>
+            </div>
+            <div class="topbar-search">
+                <label for="buscarGlobal">Buscador Global</label>
+                <input type="text" id="buscarGlobal" placeholder="Buscar en usuarios, activos, asignaciones, mantenimientos y bajas">
+            </div>
+            <div class="topbar-meta">
+                <span id="usuarioConectado">Usuario: Admin</span>
+                <span id="fechaActual">Fecha: --</span>
+                <button type="button" id="cerrarSesionBtn" class="btn-secondary">Cerrar sesión</button>
+            </div>
+        </header>
+
+        <section id="globalSearchPanel" class="card global-search-panel" style="display: none;">
+            <h3>Resultados de búsqueda global</h3>
+            <div class="global-results-grid">
+                <div class="global-result-block">
+                    <h4>Usuarios</h4>
+                    <ul id="resultadosGlobalUsuarios"></ul>
+                </div>
+                <div class="global-result-block">
+                    <h4>Activos</h4>
+                    <ul id="resultadosGlobalActivos"></ul>
+                </div>
+                <div class="global-result-block">
+                    <h4>Asignaciones</h4>
+                    <ul id="resultadosGlobalAsignaciones"></ul>
+                </div>
+                <div class="global-result-block">
+                    <h4>Mantenimientos</h4>
+                    <ul id="resultadosGlobalMantenimientos"></ul>
+                </div>
+                <div class="global-result-block">
+                    <h4>Bajas</h4>
+                    <ul id="resultadosGlobalBajas"></ul>
+                </div>
+            </div>
+        </section>
+
 
         <section id="menu" class="card">
 
             <h1>Menú Principal</h1>
+
+            <div class="kpi-grid">
+                <div class="kpi-card">
+                    <span class="kpi-icon">👤</span>
+                    <h3>Usuarios registrados</h3>
+                    <p id="kpiUsuarios">0</p>
+                </div>
+                <div class="kpi-card">
+                    <span class="kpi-icon">📦</span>
+                    <h3>Activos registrados</h3>
+                    <p id="kpiActivos">0</p>
+                </div>
+                <div class="kpi-card">
+                    <span class="kpi-icon">✅</span>
+                    <h3>Activos disponibles</h3>
+                    <p id="kpiDisponibles">0</p>
+                </div>
+                <div class="kpi-card">
+                    <span class="kpi-icon">🔗</span>
+                    <h3>Activos asignados</h3>
+                    <p id="kpiAsignados">0</p>
+                </div>
+                <div class="kpi-card">
+                    <span class="kpi-icon">🛠️</span>
+                    <h3>Activos en mantenimiento</h3>
+                    <p id="kpiEnMantenimiento">0</p>
+                </div>
+                <div class="kpi-card">
+                    <span class="kpi-icon">📉</span>
+                    <h3>Activos dados de baja</h3>
+                    <p id="kpiBajas">0</p>
+                </div>
+            </div>
+
+            <div class="recent-activity">
+                <h3>Actividad reciente</h3>
+                <ul id="recentActivityList"></ul>
+            </div>
 
             <div class="dashboard-grid">
 
@@ -75,6 +156,14 @@
                     <h3>Baja</h3>
                     <p>Dar de baja activos.</p>
                     <a href="#baja">
+                        <button>Ir</button>
+                    </a>
+                </div>
+
+                <div class="dashboard-card">
+                    <h3>Reportes</h3>
+                    <p>Resumen consolidado del sistema.</p>
+                    <a href="#reportes">
                         <button>Ir</button>
                     </a>
                 </div>
@@ -122,9 +211,34 @@
 
                 </div>
 
-                <button type="submit">Guardar Usuario</button>
+                <div class="form-actions">
+                    <button type="submit" id="guardarUsuarioBtn">Guardar Usuario</button>
+                    <button type="button" id="cancelarEdicionUsuario" class="btn-secondary">Cancelar</button>
+                </div>
 
             </form>
+
+            <div class="table-toolbar">
+                <div class="input-group">
+                    <label>Buscar Usuario</label>
+                    <input type="text" id="buscarUsuario" placeholder="Buscar por nombre, usuario o email">
+                </div>
+            </div>
+
+            <div class="table-container">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Usuario</th>
+                            <th>Email</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="usuariosTabla">
+                    </tbody>
+                </table>
+            </div>
 
         </section>
 
@@ -174,8 +288,10 @@
 
                         <select id="estado">
                             <option value="">Seleccione</option>
+                            <option>Disponible</option>
                             <option>Activo</option>
                             <option>Nuevo</option>
+                            <option>Asignado</option>
                             <option>En mantenimiento</option>
                         </select>
 
@@ -197,9 +313,64 @@
                     <small class="error"></small>
                 </div>
 
-                <button type="submit">Guardar Activo</button>
+                <div class="form-actions">
+                    <button type="submit" id="guardarActivoBtn">Guardar Activo</button>
+                    <button type="button" id="cancelarEdicionActivo" class="btn-secondary">Cancelar</button>
+                </div>
 
             </form>
+
+            <div class="table-toolbar">
+                <div class="input-group">
+                    <label>Buscar Activo</label>
+                    <input type="text" id="buscarActivo" placeholder="Buscar por código, nombre, tipo o estado">
+                </div>
+                <div class="grid-3">
+                    <div class="input-group">
+                        <label>Filtrar por Estado</label>
+                        <select id="filtroEstadoActivo">
+                            <option value="">Todos</option>
+                            <option>Disponible</option>
+                            <option>Activo</option>
+                            <option>Nuevo</option>
+                            <option>Asignado</option>
+                            <option>En mantenimiento</option>
+                            <option>Dado de baja</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label>Filtrar por Tipo</label>
+                        <select id="filtroTipoActivo">
+                            <option value="">Todos</option>
+                            <option>Hardware</option>
+                            <option>Periférico</option>
+                            <option>Mobiliario</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label>Filtrar por Fecha</label>
+                        <input type="date" id="filtroFechaActivo">
+                    </div>
+                </div>
+                <button type="button" id="limpiarFiltrosActivos" class="btn-secondary">Limpiar Filtros</button>
+            </div>
+
+            <div class="table-container">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Código</th>
+                            <th>Nombre</th>
+                            <th>Tipo</th>
+                            <th>Estado</th>
+                            <th>Fecha de Compra</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="activosTabla">
+                    </tbody>
+                </table>
+            </div>
 
         </section>
 
@@ -270,9 +441,36 @@
 
         </div>
 
-        <button type="submit">Guardar</button>
+        <div class="form-actions">
+            <button type="submit" id="guardarMantenimientoBtn">Guardar</button>
+            <button type="button" id="cancelarEdicionMantenimiento" class="btn-secondary">Cancelar</button>
+        </div>
 
     </form>
+
+    <div class="table-toolbar">
+        <div class="input-group">
+            <label>Buscar Mantenimiento</label>
+            <input type="text" id="buscarMantenimiento" placeholder="Buscar por activo, tipo, estado o descripción">
+        </div>
+    </div>
+
+    <div class="table-container">
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>Activo</th>
+                    <th>Tipo</th>
+                    <th>Fecha</th>
+                    <th>Estado Final</th>
+                    <th>Descripción</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody id="mantenimientosTabla">
+            </tbody>
+        </table>
+    </div>
 
 </section>
 
@@ -302,8 +500,6 @@
 
             <select id="usuarioAsignacion">
                 <option value="">Seleccione</option>
-                <option>Administrador</option>
-                <option>Empleado</option>
             </select>
 
             <small class="error"></small>
@@ -320,9 +516,34 @@
 
         </div>
 
-        <button type="submit">Asignar</button>
+        <div class="form-actions">
+            <button type="submit" id="guardarAsignacionBtn">Asignar</button>
+            <button type="button" id="cancelarEdicionAsignacion" class="btn-secondary">Cancelar</button>
+        </div>
 
     </form>
+
+    <div class="table-toolbar">
+        <div class="input-group">
+            <label>Buscar Asignación</label>
+            <input type="text" id="buscarAsignacion" placeholder="Buscar por activo, usuario o fecha">
+        </div>
+    </div>
+
+    <div class="table-container">
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>Activo</th>
+                    <th>Usuario</th>
+                    <th>Fecha de Asignación</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody id="asignacionesTabla">
+            </tbody>
+        </table>
+    </div>
 
 </section>
 
@@ -387,16 +608,116 @@
 
         </div>
 
-        <button type="submit">
-            Dar de Baja
-        </button>
+        <div class="form-actions">
+            <button type="submit" id="guardarBajaBtn">
+                Dar de Baja
+            </button>
+            <button type="button" id="cancelarEdicionBaja" class="btn-secondary">Cancelar</button>
+        </div>
 
     </form>
+
+    <div class="table-toolbar">
+        <div class="input-group">
+            <label>Buscar Baja</label>
+            <input type="text" id="buscarBaja" placeholder="Buscar por activo, código, tipo o descripción">
+        </div>
+    </div>
+
+    <div class="table-container">
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>Activo</th>
+                    <th>Código</th>
+                    <th>Tipo</th>
+                    <th>Descripción</th>
+                    <th>Fecha</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody id="bajasTabla">
+            </tbody>
+        </table>
+    </div>
+
+</section>
+
+<section id="reportes" class="card">
+
+    <h1>Reportes</h1>
+
+    <div class="kpi-grid">
+        <div class="kpi-card">
+            <h3>Total de usuarios</h3>
+            <p id="reporteTotalUsuarios">0</p>
+        </div>
+        <div class="kpi-card">
+            <h3>Total de activos</h3>
+            <p id="reporteTotalActivos">0</p>
+        </div>
+        <div class="kpi-card">
+            <h3>Total de asignaciones</h3>
+            <p id="reporteTotalAsignaciones">0</p>
+        </div>
+        <div class="kpi-card">
+            <h3>Total de mantenimientos</h3>
+            <p id="reporteTotalMantenimientos">0</p>
+        </div>
+        <div class="kpi-card">
+            <h3>Total de bajas</h3>
+            <p id="reporteTotalBajas">0</p>
+        </div>
+    </div>
+
+    <div class="grid-2">
+        <div>
+            <h3>Activos por Estado</h3>
+            <div class="table-container">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Estado</th>
+                            <th>Cantidad</th>
+                        </tr>
+                    </thead>
+                    <tbody id="reporteActivosEstadoTabla"></tbody>
+                </table>
+            </div>
+        </div>
+        <div>
+            <h3>Activos por Tipo</h3>
+            <div class="table-container">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Tipo</th>
+                            <th>Cantidad</th>
+                        </tr>
+                    </thead>
+                    <tbody id="reporteActivosTipoTabla"></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 
 </section>
 
     </main>
 
+</div>
+
+<div id="toastContainer" class="toast-container"></div>
+
+<div id="confirmModal" class="confirm-modal" style="display: none;">
+    <div class="confirm-modal-content">
+        <h3>Confirmar acción</h3>
+        <p id="confirmModalMessage"></p>
+        <div class="form-actions">
+            <button type="button" id="confirmModalAccept">Confirmar</button>
+            <button type="button" id="confirmModalCancel" class="btn-secondary">Cancelar</button>
+        </div>
+    </div>
 </div>
 
 <script src="script.js"></script>
